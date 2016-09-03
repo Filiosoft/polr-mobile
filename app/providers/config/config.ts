@@ -24,6 +24,13 @@ export class ConfigService {
     return this.storage.set(config.url, config.apikey);
   }
 
+  public getConfig() {
+    return {
+      url: "https://polr.me",
+      apikey: "afsdafsdafdsa"
+    }
+  }
+
 
 }
 

@@ -7,13 +7,16 @@ import { Config, ConfigService} from '../../providers/config/config';
 })
 export class HomePage {
   private config: Config;
-  private configService: ConfigService;
+  configService = ConfigService;
 
   constructor(public navCtrl: NavController) {
-
+    console.info("yo");
+    console.log(this.configService);
+    this.config = this.configService.getConfig();
   }
 
   public saveConfig() {
     this.configService.saveConfig(this.config);
   }
+
 }
