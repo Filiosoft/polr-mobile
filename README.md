@@ -20,6 +20,10 @@ This app is currently in development and most features on not yet functional.
 * [Apache Cordova](https://cordova.apache.org/)
 * [Ionic Framework](https://ionicframework.com/)
 
+## Release History
+
+See the [CHANGELOG](https://github.com/Filiosoft/polr-mobile/tree/master/CHANGELOG.md).
+
 ## License
 
 [MIT](https://github.com/Filiosoft/polr-mobile/blob/master/LICENSE)
