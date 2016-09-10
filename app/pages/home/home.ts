@@ -7,35 +7,34 @@ import { Storage, LocalStorage, NavController } from 'ionic-angular';
 })
 export class HomePage {
   local: Storage = null;
-  config: Object;
+  config: string;
 
   constructor(public navCtrl: NavController) {
     this.local = new Storage(LocalStorage);
     this.config = this.getConfig();
+
   }
 
   saveConfig(config) {
     this.local.set('config', JSON.stringify(config));
-
-    console.log("It happened");
     return;
   }
-  getConfig():ConfigClass {
+
+  getConfig() {
     var config;
-    this.local.get('config').then(function(configLocal){
+    this.local.get('config').then(function (configLocal) {
       config = JSON.parse(configLocal);
+      console.log("Hi" + configLocal)
+      return configLocal
     });
-
-    return new ConfigClass(config.url, config.api);
   }
-
 }
 
 export class ConfigClass {
   url: string;
-  apikey: string;  
+  apikey: string;
   constructor(url: string, apikey: string) {
-      this.url = url,
+    this.url = url,
       this.apikey = apikey
   }
 }
