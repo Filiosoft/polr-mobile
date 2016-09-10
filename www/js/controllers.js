@@ -69,5 +69,6 @@ angular.module('starter.controllers', [])
 
       $window.location.reload(true);
       $state.go('app.urls', {}, {reload: true});
+      console.log("Logged out.");
     }
   });
