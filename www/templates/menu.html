@@ -18,14 +18,17 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close ng-click="login()" ng-show="!loggedIn">
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/shorten">
+        <ion-item menu-close href="#/app/shorten" ng-hide="!loggedIn">
           Shorten
         </ion-item>
-        <ion-item menu-close href="#/app/urls">
+        <ion-item menu-close href="#/app/urls" ng-hide="!loggedIn">
           URLs
+        </ion-item>
+        <ion-item menu-close href="#/app/settings" ng-hide="!loggedIn">
+          Settings
         </ion-item>
       </ion-list>
     </ion-content>

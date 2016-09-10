@@ -1,5 +1,9 @@
 <ion-view view-title="URLs">
   <ion-content>
+    <div class="padding">
+      <button class="button" ng-click="login()" ng-show="!loggedIn">You Need to Login</button>
+    </div>
+
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
