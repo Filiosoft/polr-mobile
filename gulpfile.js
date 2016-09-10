@@ -6,14 +6,58 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var cordovaBuild = require("taco-team-build");
+var fs = require("fs");
+var es = require('event-stream');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+var winPlatforms = ["android", "windows"],
+  linuxPlatforms = ["android"],
+  osxPlatforms = ["ios"],
+  platformsToBuild = process.platform === "darwin" ? osxPlatforms :
+    (process.platform === "linux" ? linuxPlatforms : winPlatforms),
 
-gulp.task('sass', function(done) {
+  buildConfig = "Release",
+
+  buildArgs = {
+    android: ["--" + buildConfig.toLocaleLowerCase(), "--device",
+      "--gradleArg=--no-daemon"],
+    ios: ["--" + buildConfig.toLocaleLowerCase(), "--device"],
+    windows: ["--" + buildConfig.toLocaleLowerCase(), "--device"]
+  },
+
+  paths = {
+    apk: ["./platforms/android/ant-build/*.apk",
+      "./platforms/android/bin/*.apk",
+      "./platforms/android/build/outputs/apk/*.apk"],
+    binApk: "./bin/Android/" + buildConfig,
+    ipa: ["./platforms/ios/build/device/*.ipa",
+      "./platforms/ios/build/device/*.app.dSYM"],
+    binIpa: "./bin/iOS/" + buildConfig,
+    appx: "./platforms/windows/AppPackages/**/*",
+    binAppx: "./bin/Windows/" + buildConfig
+  };
+
+
+gulp.task('default', ['sass', 'build']);
+
+gulp.task("build", function () {
+  return cordovaBuild.buildProject(platformsToBuild, buildArgs)
+    .then(function () {
+      return cordovaBuild.packageProject(platformsToBuild)
+        .then(function () {
+          return es.concat(
+            gulp.src(paths.apk).pipe(gulp.dest(paths.binApk)),
+            gulp.src(paths.ipa).pipe(gulp.dest(paths.binIpa)),
+            gulp.src(paths.appx).pipe(gulp.dest(paths.binAppx)));
+        });
+    });
+});
+
+gulp.task('sass', function (done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
@@ -26,18 +70,18 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(paths.sass, ['sass']);
 });
 
-gulp.task('install', ['git-check'], function() {
+gulp.task('install', ['git-check'], function () {
   return bower.commands.install()
-    .on('log', function(data) {
+    .on('log', function (data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
 });
 
-gulp.task('git-check', function(done) {
+gulp.task('git-check', function (done) {
   if (!sh.which('git')) {
     console.log(
       '  ' + gutil.colors.red('Git is not installed.'),
