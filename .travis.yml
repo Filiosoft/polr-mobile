@@ -29,8 +29,7 @@ before_script:
   - npm prune
   - python setcordovaversion.py 0.1.$TRAVIS_BUILD_NUMBER $TRAVIS_BUILD_NUMBER config.xml
 script:
-  - ionic platforms add android
-  - ionic build android
+  - gulp
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
