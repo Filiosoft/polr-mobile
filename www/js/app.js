@@ -50,6 +50,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
         }
       })
+      .state('app.lookup', {
+        url: '/lookup',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/lookup.html',
+            controller: 'LookupCtrl'
+          }
+        }
+      })
       .state('app.settings', {
         url: '/settings',
         views: {

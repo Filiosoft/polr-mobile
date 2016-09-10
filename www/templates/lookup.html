@@ -1,0 +1,24 @@
+<ion-view view-title="Lookup a Short URL">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-input">
+        <input type="text" placeholder="Ending" ng-model="url.custom_ending">
+      </ion-item>
+      <ion-item>
+        <b>Short URL: </b>{{url.url}}/{{url.custom_ending}}
+      </ion-item>
+      <ion-item ng-show="lookupComplete">
+        <b>Original URL: </b>{{lookupResults.data}}
+      </ion-item>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="lookupUrl()">
+          Submit
+        </button>
+      </div>
+    </ion-list>
+
+    <div class="padding">
+      <button class="button" ng-click="login()" ng-show="!loggedIn">You Need to Login</button>
+    </div>
+  </ion-content>
+</ion-view>

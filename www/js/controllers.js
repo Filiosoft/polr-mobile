@@ -62,20 +62,76 @@ angular.module('starter.controllers', [])
     ];
   })
 
-  .controller('ShortenCtrl', function ($scope, $window, configService, $state, polrService) {
+  .controller('LookupCtrl', function ($scope, $http, polrService, configService) {
+    $scope.lookupComplete = false;
     $scope.url = {}
-
     $scope.url.url = configService.get('url');
+    $scope.lookupResults = {}
 
-    $scope.shorthenUrl = function () {
-      polrService.shorten($scope.url.shorten, $scope.url.isSecret, $scope.url.custom_ending)
+
+    $scope.lookupUrl = function () {
+      polrService.lookup($scope.url.custom_ending)
         .then(function (res) {
+          $scope.lookupResults = res;
+          $scope.lookupComplete = true;
           console.log(res);
         }).catch(function (err) {
           console.log(err);
         });
     }
   })
+
+  .controller('ShortenCtrl', function ($scope, $window, configService, $state, polrService, $ionicModal) {
+    $scope.url = {}
+    $scope.url.url = configService.get('url');
+
+    /* Beginning Modal */
+    $ionicModal.fromTemplateUrl('templates/shortencomplete.html', {
+      scope: $scope
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+    $scope.closeModal = function () {
+      $scope.modal.hide();
+      $state.go('app.lookup', {}, { reload: true });
+    };
+    $scope.showModal = function () {
+      $scope.modal.show();
+    };
+    /* End Modal */
+
+
+    $scope.shorthenUrl = function () {
+      if ($scope.url.secret == undefined) {
+        $scope.url.secret = false;
+      }
+
+      if ($scope.url.shorten == undefined) {
+        console.log("The URL is undefined.")
+      }
+      else {
+        if ($scope.url.custom_ending == undefined) {
+          polrService.shorten($scope.url.shorten, $scope.url.isSecret)
+            .then(function (res) {
+              $scope.showModal();
+              console.log(res);
+            }).catch(function (err) {
+              console.log(err);
+            });
+        }
+        else {
+          polrService.shortenCustom($scope.url.shorten, $scope.url.isSecret, $scope.url.custom_ending)
+            .then(function (res) {
+              $scope.showModal();
+              console.log(res);
+            }).catch(function (err) {
+              console.log(err);
+            });
+        }
+      }
+    }
+  })
+
   .controller('SettingsCtrl', function ($scope, $window, configService, $state) {
     $scope.doLogout = function () {
       configService.destroy('apikey');

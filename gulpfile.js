@@ -14,7 +14,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-var winPlatforms = ["android", "windows"],
+var winPlatforms = ["android"/*, "windows"*/],
   linuxPlatforms = ["android"],
   osxPlatforms = ["ios"],
   platformsToBuild = process.platform === "darwin" ? osxPlatforms :

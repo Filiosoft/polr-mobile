@@ -4,7 +4,7 @@
       <label class="item item-input">
         <input type="text" placeholder="https://filiosoft.com" ng-model="url.shorten">
       </label>
-      <ion-toggle ng-model="url.isSecret">
+      <ion-toggle ng-model="url.secret">
         Is Secret
       </ion-toggle>
       <ion-toggle ng-model="url.custom">
@@ -19,6 +19,9 @@
       <div class="padding">
         <button class="button button-block button-positive" ng-click="shorthenUrl()">
           Submit
+        </button>
+        <button class="button button-block button-positive" ng-click="showModal()">
+          Show Modal
         </button>
       </div>
     </ion-list>
