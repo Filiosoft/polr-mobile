@@ -1,11 +1,12 @@
 # Polr Mobile
+[![Build Status](https://travis-ci.org/Filiosoft/polr-mobile.svg?branch=master)](https://travis-ci.org/Filiosoft/polr-mobile)
+[![GitHub release](https://img.shields.io/github/release/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://github.com/Filiosoft/polr-mobile)
+[![license](https://img.shields.io/github/license/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://github.com/Filiosoft/polr-mobile)
+
 A mobile Polr client app built with Ionic. 
 
 This app is currently in development and most features on not yet functional. 
 
-[![Build Status](https://travis-ci.org/Filiosoft/polr-mobile.svg?branch=master)](https://travis-ci.org/Filiosoft/polr-mobile)
-[![GitHub release](https://img.shields.io/github/release/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://github.com/Filiosoft/polr-mobile)
-[![license](https://img.shields.io/github/license/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://github.com/Filiosoft/polr-mobile)
 
 [Report Issues](https://github.com/Filiosoft/polr-mobile/issues)
 
