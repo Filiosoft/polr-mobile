@@ -11,8 +11,7 @@
 
   <ion-item>
     <ion-label>Polr URL</ion-label>
-    <ion-input type="url" value="https://fsft.us" placeholder="http://polr.me"></ion-input>
-    <!--<ion-input type="url" value="" placeholder="http://polr.me" [(ngModel)]="config.url"></ion-input>-->
+    <ion-input type="url" value="" placeholder="http://polr.me" [(ngModel)]="config.url"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -23,6 +22,6 @@
 </ion-list>
 
 <div padding>
-  <button block (click)="saveConfig()">Sign In</button>
+  <button block (click)="saveConfig(config)">Sign In</button>
 </div>
 </ion-content>

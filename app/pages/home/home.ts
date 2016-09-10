@@ -1,22 +1,41 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Config, ConfigService} from '../../providers/config/config';
+import { Storage, LocalStorage, NavController } from 'ionic-angular';
+//import { Config, ConfigService} from '../../providers/config/config';
 
 @Component({
   templateUrl: 'build/pages/home/home.html'
 })
 export class HomePage {
-  private config: Config;
-  configService = ConfigService;
+  local: Storage = null;
+  config: Object;
 
   constructor(public navCtrl: NavController) {
-    console.info("yo");
-    console.log(this.configService);
-    this.config = this.configService.getConfig();
+    this.local = new Storage(LocalStorage);
+    this.config = this.getConfig();
   }
 
-  public saveConfig() {
-    this.configService.saveConfig(this.config);
+  saveConfig(config) {
+    this.local.set('config', JSON.stringify(config));
+
+    console.log("It happened");
+    return;
+  }
+  getConfig():ConfigClass {
+    var config;
+    this.local.get('config').then(function(configLocal){
+      config = JSON.parse(configLocal);
+    });
+
+    return new ConfigClass(config.url, config.api);
   }
 
+}
+
+export class ConfigClass {
+  url: string;
+  apikey: string;  
+  constructor(url: string, apikey: string) {
+      this.url = url,
+      this.apikey = apikey
+  }
 }

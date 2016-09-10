@@ -20,8 +20,11 @@ export class ConfigService {
     this.storage = new Storage(LocalStorage);
   }
 
-  public saveConfig(config: Config) {
-    return this.storage.set(config.url, config.apikey);
+  saveConfig(config: Config) {
+    this.storage.set('url', config.url);
+    this.storage.set('apikey', config.apikey);
+
+    return
   }
 
   public getConfig() {
