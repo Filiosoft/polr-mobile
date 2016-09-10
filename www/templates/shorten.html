@@ -1,5 +1,26 @@
 <ion-view view-title="Shorten a URL">
   <ion-content>
-    <h1>Shorten A URL</h1>
+    <ion-list>
+      <label class="item item-input">
+        <input type="text" placeholder="https://filiosoft.com" ng-model="url.shorten">
+      </label>
+      <ion-toggle ng-model="url.isSecret">
+        Is Secret
+      </ion-toggle>
+      <ion-toggle ng-model="url.custom">
+        Custom Ending
+      </ion-toggle>
+      <ion-item class="item-input" ng-show="url.custom">
+        <input type="text" placeholder="Custom Ending" ng-model="url.custom_ending">
+      </ion-item>
+      <ion-item ng-show="url.custom">
+        {{url.url}}/{{url.custom_ending}}
+      </ion-item>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="shorthenUrl()">
+          Submit
+        </button>
+      </div>
+    </ion-list>
   </ion-content>
 </ion-view>

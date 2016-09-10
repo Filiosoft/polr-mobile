@@ -62,13 +62,27 @@ angular.module('starter.controllers', [])
     ];
   })
 
+  .controller('ShortenCtrl', function ($scope, $window, configService, $state, polrService) {
+    $scope.url = {}
+
+    $scope.url.url = configService.get('url');
+
+    $scope.shorthenUrl = function () {
+      polrService.shorten($scope.url.shorten, $scope.url.isSecret, $scope.url.custom_ending)
+        .then(function (res) {
+          console.log(res);
+        }).catch(function (err) {
+          console.log(err);
+        });
+    }
+  })
   .controller('SettingsCtrl', function ($scope, $window, configService, $state) {
     $scope.doLogout = function () {
       configService.destroy('apikey');
       configService.destroy('url');
 
       $window.location.reload(true);
-      $state.go('app.urls', {}, {reload: true});
+      $state.go('app.urls', {}, { reload: true });
       console.log("Logged out.");
     }
   });

@@ -45,7 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         url: '/shorten',
         views: {
           'menuContent': {
-            templateUrl: 'templates/shorten.html'
+            templateUrl: 'templates/shorten.html',
+            controller: 'ShortenCtrl'
           }
         }
       })
