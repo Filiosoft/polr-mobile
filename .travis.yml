@@ -25,7 +25,7 @@ install:
   - npm install
 before_script:
   - npm prune
-  - python setcordovaVersion.py 0.1.$TRAVIS_BUILD_NUMBER $TRAVIS_BUILD_NUMBER config.xml
+  - python setcordovaversion.py 0.1.$TRAVIS_BUILD_NUMBER $TRAVIS_BUILD_NUMBER config.xml
 script:
   - gulp
 branches:
