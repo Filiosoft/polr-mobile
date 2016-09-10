@@ -1,6 +1,6 @@
 <ion-view view-title="Lookup a Short URL">
   <ion-content>
-    <ion-list>
+    <ion-list ng-hide="!loggedIn">
       <ion-item class="item-input">
         <input type="text" placeholder="Ending" ng-model="url.custom_ending">
       </ion-item>

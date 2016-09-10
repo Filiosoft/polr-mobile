@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
       configService.destroy('url');
 
       $window.location.reload(true);
-      $state.go('app.urls', {}, { reload: true });
+      $state.go('app.lookup', {}, { reload: true });
       console.log("Logged out.");
     }
   });
