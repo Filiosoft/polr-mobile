@@ -24,7 +24,7 @@ release-build:
   before_script:
     - npm install
     - npm prune
-    - python setcordovaversion.py 0.1.$CI_BUILD_TAG $CI_BUILD_ID config.xml
+    - python setcordovaversion.py $CI_BUILD_TAG $CI_BUILD_ID config.xml
   script:
     - node node_modules/gulp/bin/gulp.js
   artifacts:
@@ -35,8 +35,16 @@ release-build:
     
 deploy:
   image: python:latest
+  stage: deploy
   script:
   - pip install awscli
   - aws s3 cp ./ s3://$S3_BUCKET_NAME/ --recursive --exclude ".gitlab-ci.yml" --include "*"
   only:
   - gh-pages
+  
+mirror: 
+  stage: deploy
+  script:
+   - git clone --bare https://nprail:$GITLAB_ACCESS_KEY@gitlab.filiosoft.com/filiosoft-osp/polr-mobile.git
+   - cd polr-mobile.git
+   - git push --mirror https://nprail:$GITHUB_ACCESS_KEY@github.com/Filiosoft/polr-mobile.git
