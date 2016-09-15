@@ -1,9 +1,11 @@
-image: filiosoft/ionic:gapis
+image: filiosoft/ionic:python
+variables:
+  S3_BUCKET_NAME: "polr-mobile.filiosoft.net"
 cache:
   paths:
   - node_modules/
 
-build:
+development-build:
   stage: build
   before_script:
     - npm install
@@ -13,4 +15,28 @@ build:
     - node node_modules/gulp/bin/gulp.js
   artifacts:
     paths:
-    - bin/Android/Release/*.apk
+    - bin/Android/Release/android-release.apk
+  except:
+    - tags
+
+release-build:
+  stage: build
+  before_script:
+    - npm install
+    - npm prune
+    #- python setcordovaversion.py 0.1.$CI_BUILD_TAG $CI_BUILD_ID config.xml
+  script:
+    - node node_modules/gulp/bin/gulp.js
+  artifacts:
+    paths:
+    - bin/Android/Release/android-release.apk
+  only:
+    - tags
+    
+deploy:
+  image: python:latest
+  script:
+  - pip install awscli
+  - aws s3 cp ./ s3://$S3_BUCKET_NAME/ --recursive --exclude ".gitlab-ci.yml" --include "*"
+  only:
+  - gh-pages
