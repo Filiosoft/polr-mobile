@@ -1,0 +1,16 @@
+image: filiosoft/ionic:gapis
+cache:
+  paths:
+  - node_modules/
+
+build:
+  stage: build
+  before_script:
+    - npm install
+    - npm prune
+    - python setcordovaversion.py 0.1.$CI_BUILD_ID $CI_BUILD_ID config.xml
+  script:
+    - node node_modules/gulp/gulp.js
+  artifacts:
+    paths:
+    - bin/Android/Release/*.apk
