@@ -10,7 +10,7 @@ development-build:
   before_script:
     - npm install
     - npm prune
-    #- python setcordovaversion.py 0.1.$CI_BUILD_ID $CI_BUILD_ID config.xml
+    - python setcordovaversion.py 0.1.$CI_BUILD_ID $CI_BUILD_ID config.xml
   script:
     - node node_modules/gulp/bin/gulp.js
   artifacts:
@@ -24,7 +24,7 @@ release-build:
   before_script:
     - npm install
     - npm prune
-    #- python setcordovaversion.py 0.1.$CI_BUILD_TAG $CI_BUILD_ID config.xml
+    - python setcordovaversion.py 0.1.$CI_BUILD_TAG $CI_BUILD_ID config.xml
   script:
     - node node_modules/gulp/bin/gulp.js
   artifacts:
