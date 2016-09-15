@@ -10,7 +10,7 @@ build:
     - npm prune
     #- python setcordovaversion.py 0.1.$CI_BUILD_ID $CI_BUILD_ID config.xml
   script:
-    - node node_modules/gulp/gulp.js
+    - node node_modules/gulp/bin/gulp.js
   artifacts:
     paths:
     - bin/Android/Release/*.apk
