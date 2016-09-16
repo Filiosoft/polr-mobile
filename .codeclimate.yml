@@ -23,11 +23,8 @@ index e69de29..8b9532d 100644
 +  - "**.js"
 +  - "**.jsx"
 +  - "**.module"
-+  - "**.php"
-+  - "**.py"
-+  - "**.rb"
 +exclude_paths: 
-+  - "lib/"
++  - "www/lib/"
 +  - "hooks/"
 diff --git a/.csslintrc b/.csslintrc
 index e69de29..aacba95 100644

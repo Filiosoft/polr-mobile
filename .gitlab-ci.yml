@@ -5,8 +5,10 @@ cache:
   paths:
   - node_modules/
 
-development-build:
+dev-build-android:
   stage: build
+  tags: 
+    - docker
   before_script:
     - npm install
     - npm prune
@@ -19,8 +21,10 @@ development-build:
   except:
     - tags
 
-release-build:
+release-build-android:
   stage: build
+  tags: 
+    - docker
   before_script:
     - npm install
     - npm prune
