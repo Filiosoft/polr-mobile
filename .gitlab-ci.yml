@@ -50,6 +50,8 @@ deploy:
   
 mirror: 
   stage: deploy
+  tags: 
+    - docker
   script:
    - git clone --bare https://nprail:$GITLAB_ACCESS_KEY@gitlab.filiosoft.com/filiosoft-osp/polr-mobile.git
    - cd polr-mobile.git
