@@ -21,3 +21,4 @@ exclude_paths:
   - "www/lib/"
   - "hooks/"
   - "gulpfile.js"
+  - "www/css/ionic.app.css"
