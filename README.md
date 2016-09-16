@@ -1,8 +1,8 @@
 # Polr Mobile
 [![build status](https://gitlab.filiosoft.com/filiosoft-osp/polr-mobile/badges/master/build.svg)](https://gitlab.filiosoft.com/filiosoft-osp/polr-mobile/commits/master)
-[![GitHub release](https://img.shields.io/github/release/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://gitlab.filiosoft.com/filiosoft-osp/polr-mobile/tags)
+[![Code Climate](https://codeclimate.com/github/Filiosoft/polr-mobile/badges/gpa.svg)](https://codeclimate.com/github/Filiosoft/polr-mobile)
 [![license](https://img.shields.io/github/license/Filiosoft/polr-mobile.svg?maxAge=2592000)](https://gitlab.filiosoft.com/filiosoft-osp/polr-mobile/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/Filiosoft/polr-mobile.svg)](https://gitlab.filiosoft.com/filiosoft-osp/polr-mobile/issues)
+
 
 A mobile Polr client app built with Ionic. 
 
