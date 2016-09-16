@@ -9,7 +9,7 @@ angular.module('starter.services', [])
             },
             destroy: function (key) {
                 return localStorage.removeItem(key);
-            },
+            }
         };
     }])
 
