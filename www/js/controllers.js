@@ -102,15 +102,15 @@ angular.module('starter.controllers', [])
 
 
     $scope.shorthenUrl = function () {
-      if ($scope.url.secret == undefined) {
+      if ($scope.url.secret === undefined) {
         $scope.url.secret = false;
       }
 
-      if ($scope.url.shorten == undefined) {
+      if ($scope.url.shorten === undefined) {
         console.log("The URL is undefined.")
       }
       else {
-        if ($scope.url.custom_ending == undefined) {
+        if ($scope.url.custom_ending === undefined) {
           polrService.shorten($scope.url.shorten, $scope.url.isSecret)
             .then(function (res) {
               $scope.showModal();
