@@ -44,9 +44,8 @@ lint:
   before_script:
     - npm install
     - npm prune
-    - python setcordovaversion.py $CI_BUILD_TAG $CI_BUILD_ID config.xml
   script:
-    - node node_modules/gulp/bin/gulp.js
+    - node node_modules/gulp/bin/gulp.js test
   except:
     - tags
 
