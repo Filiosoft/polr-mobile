@@ -40,6 +40,8 @@ release-build-android:
 deploy:
   image: python:latest
   stage: deploy
+  tags: 
+    - docker
   script:
   - pip install awscli
   - aws s3 cp ./ s3://$S3_BUCKET_NAME/ --recursive --exclude ".gitlab-ci.yml" --include "*"

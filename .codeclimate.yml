@@ -1,9 +1,3 @@
-diff --git a/.codeclimate.yml b/.codeclimate.yml
-index e69de29..8b9532d 100644
---- a/.codeclimate.yml
-+++ b/.codeclimate.yml
-@@ -0,0 +1,29 @@
-+---
 +engines:
 +  csslint:
 +    enabled: true
@@ -26,24 +20,6 @@ index e69de29..8b9532d 100644
 +exclude_paths: 
 +  - "www/lib/"
 +  - "hooks/"
-diff --git a/.csslintrc b/.csslintrc
-index e69de29..aacba95 100644
---- a/.csslintrc
-+++ b/.csslintrc
-@@ -0,0 +1,2 @@
-+--exclude-exts=.min.css
-+--ignore=adjoining-classes,box-model,ids,order-alphabetical,unqualified-attributes
-diff --git a/.eslintignore b/.eslintignore
-index e69de29..96212a3 100644
---- a/.eslintignore
-+++ b/.eslintignore
-@@ -0,0 +1 @@
-+**/*{.,-}min.js
-diff --git a/.eslintrc b/.eslintrc
-index e69de29..9faa375 100644
---- a/.eslintrc
-+++ b/.eslintrc
-@@ -0,0 +1,213 @@
 +ecmaFeatures:
 +  modules: true
 +  jsx: true
