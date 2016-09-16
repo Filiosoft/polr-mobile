@@ -1,2 +1,7 @@
---exclude-exts=.min.css
---ignore=adjoining-classes,box-model,ids,order-alphabetical,unqualified-attributes
+{
+    "box-model": false,
+    "ids": true,
+    "unqualified-attributes": false,
+    "adjoining-classes": false,
+    "order-alphabetical": false
+}

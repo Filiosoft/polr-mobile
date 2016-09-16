@@ -36,7 +36,20 @@ release-build-android:
     - bin/Android/Release/android-release.apk
   only:
     - tags
-    
+
+lint:
+  stage: test
+  tags: 
+    - docker
+  before_script:
+    - npm install
+    - npm prune
+    - python setcordovaversion.py $CI_BUILD_TAG $CI_BUILD_ID config.xml
+  script:
+    - node node_modules/gulp/bin/gulp.js
+  except:
+    - tags
+
 deploy:
   image: python:latest
   stage: deploy

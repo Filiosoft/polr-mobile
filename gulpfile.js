@@ -9,6 +9,8 @@ var sh = require('shelljs');
 var cordovaBuild = require("taco-team-build");
 var fs = require("fs");
 var es = require('event-stream');
+var eslint = require('gulp-eslint');
+var csslint = require('gulp-csslint');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -92,4 +94,21 @@ gulp.task('git-check', function (done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('test', ['eslint', 'csslint']);
+
+gulp.task('eslint', function () {
+  return gulp.src('www/js/**').pipe(eslint({
+    'configFile': ".eslintrc"
+  }))
+    .pipe(eslint.format())
+    // Brick on failure to be super strict
+    .pipe(eslint.failOnError());
+});
+
+gulp.task('csslint', function () {
+  gulp.src(['www/css/*.css', '!www/css/*.min.css', '!www/css/ionic.app.css'])
+    .pipe(csslint())
+    .pipe(csslint.formatter());
 });
