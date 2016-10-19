@@ -1,7 +1,9 @@
 sudo: true
 language: android
 addons:
-  artifacts: true
+  artifacts:
+    paths:
+    - bin/*
 cache:
   directories:
     - node_modules
