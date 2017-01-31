@@ -1,4 +1,4 @@
-image: filiosoft/ionic:python
+image: filiosoft/android-node:latest
 variables:
   S3_BUCKET_NAME: "polr-mobile.filiosoft.net"
   VERSION_NUMBER: "0.1.$CI_BUILD_ID"
@@ -12,8 +12,9 @@ dev-build-android:
     - docker
   before_script:
     - npm install
+    - npm install -g scv-cli
     - npm prune
-    - python setcordovaversion.py $VERSION_NUMBER $CI_BUILD_ID config.xml
+    - scv -n $VERSION_NUMBER -b $CI_BUILD_ID
   script:
     - node node_modules/gulp/bin/gulp.js
   after_script:
@@ -31,8 +32,9 @@ release-build-android:
     - docker
   before_script:
     - npm install
+    - npm install -g scv-cli
     - npm prune
-    - python setcordovaversion.py $CI_BUILD_TAG $CI_BUILD_ID config.xml
+    - scv -n $VERSION_NUMBER -b $CI_BUILD_ID
   script:
     - node node_modules/gulp/bin/gulp.js
   after_script:
@@ -69,6 +71,6 @@ mirror:
   tags: 
     - docker
   script:
-   - git clone --bare https://nprail:$GITLAB_ACCESS_KEY@gitlab.filiosoft.com/filiosoft-osp/polr-mobile.git
+   - git clone --bare https://nprail:$GITLAB_ACCESS_KEY@gitlab.filiosoft.com/filiosoft-oss/polr-mobile.git
    - cd polr-mobile.git
    - git push --mirror https://nprail:$GITHUB_ACCESS_KEY@github.com/Filiosoft/polr-mobile.git
