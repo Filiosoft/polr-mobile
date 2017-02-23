@@ -57,7 +57,7 @@ lint:
     - node node_modules/gulp/bin/gulp.js test
 
 deploy:
-  image: garland/aws-cli-docker:latest
+  image: filiosoft/aws-cli:latest
   stage: deploy
   tags: 
     - docker
@@ -65,7 +65,23 @@ deploy:
   - aws s3 cp ./ s3://$S3_BUCKET_NAME/ --recursive --exclude ".gitlab-ci.yml" --include "*"
   only:
   - gh-pages
-  
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  environment: pages
+  tags:
+    - docker
+  script:
+  - mkdir .public
+  - cp -r * .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - gh-pages
+ 
 mirror: 
   stage: deploy
   tags: 
