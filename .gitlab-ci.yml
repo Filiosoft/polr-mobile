@@ -14,7 +14,7 @@ dev-build-android:
     - npm i -qq
     - npm i -qq scv-cli
   script:
-    - node node_modules/scv/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
+    - node node_modules/scv-cli/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
     - mv bin/Android/Release/android-release.apk Polr-Mobile-Dev-$VERSION_NUMBER.apk
@@ -32,7 +32,7 @@ release-build-android:
     - npm i -qq
     - npm i -qq scv-cli
   script:
-    - node node_modules/scv/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
+    - node node_modules/scv-cli/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
     - mv bin/Android/Release/android-release.apk Polr-Mobile-Release-$CI_BUILD_TAG.apk
