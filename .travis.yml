@@ -3,7 +3,7 @@ language: android
 addons:
   artifacts:
     paths:
-    - bin/*
+    - bin/**/*.apk
 cache:
   directories:
     - node_modules
