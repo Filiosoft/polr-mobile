@@ -11,14 +11,12 @@ dev-build-android:
   tags: 
     - docker
   before_script:
-    - npm install
-    - npm install -g scv-cli
-    - npm prune
-    - scv -n $VERSION_NUMBER -b $CI_PIPELINE_ID
+    - npm i -qq
+    - npm i -qq scv-cli
   script:
+    - node node_modules/scv/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
-    - mkdir apk
     - mv bin/Android/Release/android-release.apk Polr-Mobile-Dev-$VERSION_NUMBER.apk
   artifacts:
     paths:
@@ -31,14 +29,12 @@ release-build-android:
   tags: 
     - docker
   before_script:
-    - npm install
-    - npm install -g scv-cli
-    - npm prune
-    - scv -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
+    - npm i -qq
+    - npm i -qq scv-cli
   script:
+    - node node_modules/scv/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
-    - mkdir apk
     - mv bin/Android/Release/android-release.apk Polr-Mobile-Release-$CI_BUILD_TAG.apk
   artifacts:
     paths:
