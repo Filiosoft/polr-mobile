@@ -1,7 +1,7 @@
 image: filiosoft/android-node:latest
 variables:
   S3_BUCKET_NAME: "polr-mobile.filiosoft.net"
-  VERSION_NUMBER: "0.1.$CI_BUILD_ID"
+  VERSION_NUMBER: "0.1.0"
 cache:
   paths:
   - node_modules/
@@ -14,7 +14,7 @@ dev-build-android:
     - npm install
     - npm install -g scv-cli
     - npm prune
-    - scv -n $VERSION_NUMBER -b $CI_BUILD_ID
+    - scv -n $VERSION_NUMBER -b $CI_PIPELINE_ID
   script:
     - node node_modules/gulp/bin/gulp.js
   after_script:
@@ -34,7 +34,7 @@ release-build-android:
     - npm install
     - npm install -g scv-cli
     - npm prune
-    - scv -n $VERSION_NUMBER -b $CI_BUILD_ID
+    - scv -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
   script:
     - node node_modules/gulp/bin/gulp.js
   after_script:
