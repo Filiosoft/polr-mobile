@@ -17,10 +17,10 @@ dev-build-android:
     - node node_modules/scv-cli/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
-    - mv bin/Android/Release/android-release.apk Polr-Mobile-Dev-$VERSION_NUMBER.apk
+    - mv bin/Android/Release/android-release.apk Polr-Mobile-Dev-$VERSION_NUMBER-$CI_PIPELINE_ID.apk
   artifacts:
     paths:
-    - Polr-Mobile-Dev-$VERSION_NUMBER.apk
+    - Polr-Mobile-Dev-$VERSION_NUMBER-$CI_PIPELINE_ID.apk
   except:
     - tags
 
@@ -35,10 +35,10 @@ release-build-android:
     - node node_modules/scv-cli/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
   after_script:
-    - mv bin/Android/Release/android-release.apk Polr-Mobile-Release-$CI_BUILD_TAG.apk
+    - mv bin/Android/Release/android-release.apk Polr-Mobile-Release-$CI_BUILD_TAG-$CI_PIPELINE_ID.apk
   artifacts:
     paths:
-    - Polr-Mobile-Release-$CI_BUILD_TAG.apk
+    - Polr-Mobile-Release-$CI_BUILD_TAG-$CI_PIPELINE_ID.apk
   only:
     - tags
 
@@ -47,8 +47,7 @@ lint:
   tags: 
     - docker
   before_script:
-    - npm install
-    - npm prune
+    - npm i -qq
   script:
     - node node_modules/gulp/bin/gulp.js test
 
