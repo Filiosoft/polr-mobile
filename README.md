@@ -28,3 +28,6 @@ See the [CHANGELOG](https://gitlab.filiosoft.com/oss/polr-mobile/blob/master/CHA
 ## License
 
 [MIT](https://gitlab.filiosoft.com/oss/polr-mobile/blob/master/LICENSE)
+
+
+Copyright 2017 Filiosoft, LLC. 
