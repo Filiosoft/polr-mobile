@@ -6,43 +6,23 @@ cache:
   paths:
   - node_modules/
 
-dev-build-android:
+build-android:
   stage: build
-  tags: 
+  environment: build/android
+  tags:
     - docker
   before_script:
     - yarn install
   script:
-    - node node_modules/scv-cli/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
-    - node node_modules/gulp/bin/gulp.js
-  after_script:
-    - mv bin/Android/Release/android-release.apk Polr-Mobile-Dev-$VERSION_NUMBER-$CI_PIPELINE_ID.apk
+    - ./node_modules/.bin/gulp ci --vc $CI_PIPELINE_ID
+    - ./node_modules/.bin/gulp move-apk --vc $CI_PIPELINE_ID
   artifacts:
     paths:
-    - Polr-Mobile-Dev-$VERSION_NUMBER-$CI_PIPELINE_ID.apk
-  except:
-    - tags
-
-release-build-android:
-  stage: build
-  tags: 
-    - docker
-  before_script:
-    - yarn install
-  script:
-    - node node_modules/scv-cli/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
-    - node node_modules/gulp/bin/gulp.js
-  after_script:
-    - mv bin/Android/Release/android-release.apk Polr-Mobile-Release-$CI_BUILD_TAG-$CI_PIPELINE_ID.apk
-  artifacts:
-    paths:
-    - Polr-Mobile-Release-$CI_BUILD_TAG-$CI_PIPELINE_ID.apk
-  only:
-    - tags
+    - bin/Android/Release/Polr-Mobile-Dev-*.apk
 
 lint:
   stage: test
-  tags: 
+  tags:
     - docker
   before_script:
     - yarn install
@@ -52,7 +32,7 @@ lint:
 deploy:
   image: filiosoft/aws-cli:latest
   stage: deploy
-  tags: 
+  tags:
     - docker
   script:
   - aws s3 cp ./ s3://$S3_BUCKET_NAME/ --recursive --exclude ".gitlab-ci.yml" --include "*"
@@ -74,10 +54,10 @@ pages:
     - public
   only:
   - gh-pages
- 
-mirror: 
+
+mirror:
   stage: deploy
-  tags: 
+  tags:
     - docker
   script:
    - git clone --bare https://nprail:$GITLAB_ACCESS_KEY@gitlab.filiosoft.com/oss/polr-mobile.git
