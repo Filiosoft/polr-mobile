@@ -21,6 +21,7 @@ android:
 before_install:
   - nvm install v6
   - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - source ~/.bashrc
 install:
   - yarn install
 before_script:
