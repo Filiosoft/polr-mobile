@@ -2,9 +2,6 @@ image: filiosoft/android-node:latest
 variables:
   S3_BUCKET_NAME: "polr-mobile.filiosoft.net"
   VERSION_NUMBER: "0.1.0"
-cache:
-  paths:
-  - node_modules/
 
 build-android:
   stage: build
