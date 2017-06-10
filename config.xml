@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.filiosoft.polrmobile" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="net.filiosoft.polrmobile" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Polr-Mobile</name>
     <description>A mobile Polr client app built with Ionic.</description>
     <author email="team@filiosoft.com" href="https://filiosoft.net/">Filiosoft Open Source Team</author>

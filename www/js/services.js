@@ -15,11 +15,13 @@ angular.module('app.services', [])
 
     .factory('polrService', ['$http', 'configService', function ($http, configService) {
         var apiUrl = configService.get('url');
+        var apiVersion = 'v2';
         var apikey = configService.get('apikey');
+        var baseUrl = apiUrl + '/api/' + apiVersion + '/action';
 
         return {
             shortenCustom: function (url, is_secret, custom_ending) {
-                return $http.get(apiUrl + '/api/v2/action/shorten?key=' + apikey + '&url=' + url + '&custom_ending=' + custom_ending + '&is_secret=' + is_secret)
+                return $http.get(baseUrl + '/shorten?key=' + apikey + '&url=' + url + '&custom_ending=' + custom_ending + '&is_secret=' + is_secret)
                     .then(function (res) {
                         console.log(res);
                     }).catch(function (err) {
@@ -27,7 +29,7 @@ angular.module('app.services', [])
                     });
             },
             shorten: function (url, is_secret) {
-                return $http.get(apiUrl + '/api/v2/action/shorten?key=' + apikey + '&url=' + url + '&is_secret=' + is_secret)
+                return $http.get(baseUrl + '/shorten?key=' + apikey + '&url=' + url + '&is_secret=' + is_secret)
                     .then(function (res) {
                         console.log(res);
                     }).catch(function (err) {
@@ -35,7 +37,7 @@ angular.module('app.services', [])
                     });
             },
             lookup: function (ending) {
-                return $http.get(apiUrl + '/api/v2/action/lookup?key=' + apikey + '&url_ending=' + ending)
+                return $http.get(baseUrl + '/lookup?key=' + apikey + '&url_ending=' + ending)
                     .then(function (res) {
                         return res;
                     }).catch(function (err) {
