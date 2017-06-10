@@ -11,8 +11,7 @@ dev-build-android:
   tags: 
     - docker
   before_script:
-    - npm i -qq
-    - npm i -qq scv-cli
+    - yarn install
   script:
     - node node_modules/scv-cli/scv.js -n $VERSION_NUMBER -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
@@ -29,8 +28,7 @@ release-build-android:
   tags: 
     - docker
   before_script:
-    - npm i -qq
-    - npm i -qq scv-cli
+    - yarn install
   script:
     - node node_modules/scv-cli/scv.js -n $CI_BUILD_TAG -b $CI_PIPELINE_ID
     - node node_modules/gulp/bin/gulp.js
@@ -47,7 +45,7 @@ lint:
   tags: 
     - docker
   before_script:
-    - npm i -qq
+    - yarn install
   script:
     - node node_modules/gulp/bin/gulp.js test
 
