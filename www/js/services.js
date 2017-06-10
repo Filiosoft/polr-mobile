@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('app.services', [])
     .factory('configService', ['$http', function ($http) {
         return {
             set: function (key, value) {

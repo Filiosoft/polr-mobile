@@ -21,17 +21,14 @@ android:
 
 before_install:
   - nvm install v6
-  - npm i -qq -g npm@^2.0.0
-  - npm i -qq -g ionic
-  - npm i -qq -g cordova
-  - npm i -qq -g gulp
-  - npm i -qq scv-cli
 install:
-  - npm i -qq
+  - yarn install
 before_script:
   - node node_modules/scv-cli/scv.js -n 0.1.0 -b $TRAVIS_BUILD_NUMBER
 script:
-  - gulp
+  - node node_modules/gulp/bin/gulp.js
+after_script:
+  - mv bin/Android/Release/android-release.apk bin/Android/Release/Polr-Mobile-Dev-0.1.0-$TRAVIS_BUILD_NUMBER.apk
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
