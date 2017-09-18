@@ -1,4 +1,4 @@
-image: filiosoft/android-node:latest
+image: registry.filiosoft.com/docker/android-node:latest
 variables:
   S3_BUCKET_NAME: "polr-mobile.filiosoft.net"
   VERSION_NUMBER: "0.1.0"
@@ -11,8 +11,8 @@ build-android:
   before_script:
     - yarn install
   script:
-    - ./node_modules/.bin/gulp ci --vc $CI_PIPELINE_ID
-    - ./node_modules/.bin/gulp move-apk --vc $CI_PIPELINE_ID
+    - npx gulp ci --vc $CI_PIPELINE_ID
+    - npx gulp move-apk --vc $CI_PIPELINE_ID
   artifacts:
     paths:
     - bin/Android/Release/Polr-Mobile-Dev-*.apk
